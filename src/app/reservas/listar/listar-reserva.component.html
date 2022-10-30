@@ -1,0 +1,58 @@
+<div class="container" >
+  <div class="row">
+
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5">
+
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-success">
+            Listar Reservas
+          </h1>
+        <hr />
+      </div>
+
+      <!-- Barra de Ações -->
+      <div class="d-grid d-md-flex gap-1 mt-5">
+        <a [routerLink]="['/reservas/inserir']"  role="button" class="btn btn-success me-md-1">
+            <i class="pi pi-plus-circle me-2"></i>
+            Nova Reserva
+        </a>
+      </div>
+
+      <!-- Listagem de Registros -->
+      <div class="mt-3">
+        <table class="table table-light table-striped table-hover table-borderless">
+          <thead class="thead-dark text-center">
+          <tr>
+            <th>Data</th>
+            <th>Hora de Início</th>
+            <th>Hora de Termino</th>
+            <th>Ações</th>
+          </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let r of (reservas$ | async)">
+              <td>{{r.data}}</td>
+              <td>{{r.horaInicio}}</td>
+              <td>{{r.horaTermino}}</td>
+
+              <td class="d-grid d-md-block">
+                <button [routerLink]="['/reservas/editar', r.id]"
+                  type="button" class="btn btn-sm btn-success me-0 me-md-1 mb-1 mb-md-auto">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button [routerLink]="['/reservas/excluir', r.id]"
+                  type="button" class="btn btn-sm btn-outline-danger me-0 me-md-1 mb-1 mb-md-auto">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
