@@ -37,7 +37,7 @@
               <td>{{r.horaInicio}}</td>
               <td>{{r.horaTermino}}</td>
 
-              <td *ngIf="r.usuarioId === usuarioLogado" class="d-grid d-md-block">
+              <td class="d-grid d-md-block">
                 <button [routerLink]="['/reservas/editar', r.id]"
                   type="button" class="btn btn-sm btn-success me-0 me-md-1 mb-1 mb-md-auto">
                   <i class="bi bi-pencil"></i>
@@ -48,7 +48,6 @@
                 </button>
               </td>
             </tr>
-
           </tbody>
         </table>
       </div>

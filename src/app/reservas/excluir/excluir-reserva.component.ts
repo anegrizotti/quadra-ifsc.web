@@ -28,7 +28,6 @@ export class ExcluirReservaComponent implements OnInit {
   }
 
   public gravar() {
-
     this.reservaService.excluir(this.reservaFormVM.id)
       .subscribe({
         next: (reservaId) => this.processarSucesso(reservaId),
