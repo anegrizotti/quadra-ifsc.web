@@ -45,7 +45,16 @@ export class ReservaService {
       .get<ListarReservaViewModel[]>(this.apiUrl + 'reservas', this.obterHeadersAutorizacao())
       .pipe(map(this.processarDados), catchError(this.processarFalha));
 
-    return resposta;
+    return resposta
+  }
+
+  public selecionarReservasUsuarioAtual(id: string) {
+    return this.selecionarTodos()
+      .pipe(
+        map(reservas => {
+          return reservas.filter(req => req.usuarioId === id);
+        })
+      )
   }
 
   public selecionarPorId(id: string): Observable<FormsReservaViewModel> {

@@ -28,11 +28,14 @@ export class ExcluirReservaComponent implements OnInit {
   }
 
   public gravar() {
+    debugger
     this.reservaService.excluir(this.reservaFormVM.id)
+
       .subscribe({
         next: (reservaId) => this.processarSucesso(reservaId),
         error: (erro) => this.processarFalha(erro)
       })
+      console.log(this.reservaFormVM.id);
   }
 
   private processarSucesso(reservaId: string): void {

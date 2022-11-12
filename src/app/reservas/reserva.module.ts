@@ -21,7 +21,7 @@ import { ExcluirReservaComponent } from './excluir/excluir-reserva.component';
     ListarReservaComponent,
     EditarReservaComponent,
     ExcluirReservaComponent,
-    InserirReservaComponent
+    InserirReservaComponent,
   ],
   imports: [
     CommonModule,

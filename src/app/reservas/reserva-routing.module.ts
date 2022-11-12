@@ -25,7 +25,7 @@ const routes: Routes = [
       {
         path: 'excluir/:id',
         component: ExcluirReservaComponent,
-        resolve: { contato: VisualizarReservaResolver }
+        resolve: { reserva: VisualizarReservaResolver }
       }
     ]
   }
