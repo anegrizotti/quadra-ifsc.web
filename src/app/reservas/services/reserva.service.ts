@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, map, Observable, throwError } from "rxjs";
+import { catchError, map, Observable, tap, throwError } from "rxjs";
 import { LocalStorageService } from "src/app/auth/services/local-storage.service";
 import { environment } from "src/environments/environment";
 import { FormsReservaViewModel } from "../view-models/forms-reserva.view-model";
@@ -44,7 +44,6 @@ export class ReservaService {
     const resposta = this.http
       .get<ListarReservaViewModel[]>(this.apiUrl + 'reservas', this.obterHeadersAutorizacao())
       .pipe(map(this.processarDados), catchError(this.processarFalha));
-
     return resposta
   }
 

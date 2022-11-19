@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import axios from 'axios';
+import { debug } from 'console';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 import { AuthService } from '../services/auth.service';
 import { LocalStorageService } from '../services/local-storage.service';
@@ -16,6 +18,7 @@ import { TokenViewModel } from '../view-models/token.view-model';
 })
 export class LoginComponent implements OnInit {
   public form: FormGroup;
+  public tempo: any;
 
   public loginVM: AutenticarUsuarioViewModel;
 
@@ -35,6 +38,8 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
     })
+
+    this.tempo = obterDadosJson();
   }
 
   get email() {
@@ -67,5 +72,42 @@ export class LoginComponent implements OnInit {
 
   private processarErro(erro: any) {
     console.log(erro);
+  }
+}
+
+async function obterDadosJson() {
+  debugger
+  try {
+    const resposta = await axios.get(`https://weather.contrateumdev.com.br/api/weather/city/?city=Lages`, { responseType: "json" })
+
+    debugger
+    carregarTemperaturaETempo(resposta.data);
+
+  } catch (err) {
+    console.log(err);
+  }
+
+  async function carregarTemperaturaETempo(dados: any) {
+    try {
+      debugger
+
+      const temperatura = document.getElementById("temperatura") as HTMLLabelElement;
+      temperatura.textContent = `Cidade: ${dados.name}`;
+
+      const tempMin = document.getElementById("tempMin") as HTMLLabelElement;
+      tempMin.textContent = `Temperatura Mínima: ${dados.main.temp_min}°`;
+
+      const tempMax = document.getElementById("tempMax") as HTMLLabelElement;
+      tempMax.textContent = `Temperatura Máxima: ${dados.main.temp_max}°`;
+
+      const sensacao = document.getElementById("sensacao") as HTMLLabelElement;
+      sensacao.textContent = `Sensação Térmica: ${dados.main.feels_like}°`;
+
+      const descricao = document.getElementById("descricao") as HTMLLabelElement;
+      descricao.textContent = `Descrição: ${dados.weather[0].description}`;
+
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

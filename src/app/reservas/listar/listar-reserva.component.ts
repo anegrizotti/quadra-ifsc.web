@@ -19,7 +19,9 @@ export class ListarReservaComponent implements OnInit {
     private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
+    debugger
     this.reservas$ = this.reservaService.selecionarTodos(),
     this.usuarioLogado = this.usuarioService.usuarioLogado;
   }
+
 }

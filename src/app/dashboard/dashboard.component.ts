@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
     titulo: Title,
     private usuarioService: UsuarioService
   ) {
-    titulo.setTitle('Dashboard - e-Agenda');
+    titulo.setTitle('Dashboard - Quadra-IFSC');
   }
 
   ngOnInit(): void {
