@@ -76,11 +76,8 @@ export class LoginComponent implements OnInit {
 }
 
 async function obterDadosJson() {
-  debugger
   try {
-    const resposta = await axios.get(`https://weather.contrateumdev.com.br/api/weather/city/?city=Lages`, { responseType: "json" })
-
-    debugger
+    const resposta = await axios.get(`https://weather.contrateumdev.com.br/api/weather/city/?city=Lages`, { responseType: "json" });
     carregarTemperaturaETempo(resposta.data);
 
   } catch (err) {
@@ -89,8 +86,6 @@ async function obterDadosJson() {
 
   async function carregarTemperaturaETempo(dados: any) {
     try {
-      debugger
-
       const temperatura = document.getElementById("temperatura") as HTMLLabelElement;
       temperatura.textContent = `Cidade: ${dados.name}`;
 
